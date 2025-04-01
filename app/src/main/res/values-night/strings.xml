@@ -1,5 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">ProjetSaeDon</string>
     <string name="accueil_actualites_text"><u>Actualités</u></string>
     <string name="btn_rech_asso_text">Rechercher une association</string>
     <string name="btn_voir_dons_text">Voir vos dons récurrents</string>
@@ -11,23 +11,4 @@
     <string name="btn_valider_don_text">valider</string>
     <string name="desc_asso_default_text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus mollis justo sit amet nunc lacinia, id volutpat libero laoreet. Donec a erat commodo orci vestibulum hendrerit. Nam sit amet libero lorem. In at sem quis sapien venenatis rutrum nec eu nibh. Nullam gravida magna tellus, et cursus metus blandit eu. Curabitur gravida sapien in ex pretium bibendum. Pellentesque vehicula nisi sit amet vehicula interdum. In turpis metus, eleifend sed mollis at, varius vitae ligula.</string>
     <string name="bar_montant_don">Montant</string>
-    <string name="connectez_vous" >Connectez vous</string>
-    <string name="logo_desc" >Desc</string>
-    <string name="email" >Email</string>
-    <string name="mot_de_passe" >Mot de passe</string>
-    <string name="mot_de_passe_oubli" >Mot de passe oublié</string>
-    <string name="se_connecter" >Se connecter</string>
-    <string name="se_connecter_invite" >Se connecter en tant qu\'invité</string>
-    <string name="s_inscrire" >S\'inscrire</string>
-    <string name="inscription" >Inscription</string>
-    <string name="retour_connexion" >Retour connexion</string>
-    <string name="prenom" >Prenom</string>
-    <string name="nom" >Nom</string>
-    <string name="mobile" >Mobile</string>
-    <string name="valider_inscription" >Valider inscription</string>
-    <string name="adresse" >Code Postal</string>
-    <string name="nouveau_mot_au_passe" >Nouveau mot de passe</string>
-    <string name="confirmer_le_nouveau_mot_de_passe" >Confirmer le nouveau mot de passe</string>
-    <string name="valider" >Valider</string>
-    <string name="retour" >Retour</string>
 </resources>

@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/accueil"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".accueil.AccueilActivity">
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_marginTop="25sp"
+        android:layout_height="250sp"
+        app:cardBackgroundColor="@color/sky_blue"
+        android:layout_marginLeft="20sp"
+        android:layout_marginRight="20sp"
+        app:cardCornerRadius="10sp"
+        >
+
+        <TextView
+            android:layout_marginStart="10sp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/accueil_actualites_text"
+            android:textSize="35sp"
+            android:textStyle="normal"
+            />
+
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="75sp"
+        app:cardCornerRadius="10sp"
+        android:layout_marginTop="30sp"
+        android:layout_marginRight="20sp"
+        android:layout_marginLeft="20sp">
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/green"
+            android:id="@+id/btn_rech_asso"
+            android:text="@string/btn_rech_asso_text"
+            android:textSize="20sp"
+            />
+
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="75sp"
+        app:cardCornerRadius="10sp"
+        android:layout_marginTop="30sp"
+        android:layout_marginRight="20sp"
+        android:layout_marginLeft="20sp">
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/green"
+            android:id="@+id/btn_voir_dons"
+            android:text="@string/btn_voir_dons_text"
+            android:textSize="20sp"
+            />
+
+    </androidx.cardview.widget.CardView>
+
+</LinearLayout>
