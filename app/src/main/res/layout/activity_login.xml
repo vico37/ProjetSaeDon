@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical"
+    tools:context=".login.LoginActivity">
+
+    <!-- Barre de titre -->
+    <TextView
+        android:id="@+id/textViewConnexionTitre"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/connectez_vous"
+        android:background="@color/violetPrimary"
+        android:padding="25dp"
+        android:textColor="@color/white"
+        android:textStyle="bold"
+        android:textAlignment="center"
+        android:textSize="20sp" />
+
+    <!-- Logo ou icône au centre -->
+    <ImageView
+        android:id="@+id/imageViewLogo"
+        android:layout_width="120dp"
+        android:layout_height="120dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="40dp"
+        android:src="@drawable/logo"
+        android:contentDescription="@string/logo_desc" />
+
+    <!-- Contenu principal (champ email, mdp, etc.) -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="top|center"
+        android:orientation="vertical"
+        android:padding="30dp">
+
+        <!-- Champ Email -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingBottom="5dp"
+            android:text="@string/email"
+            android:textSize="16sp" />
+
+        <EditText
+            android:id="@+id/editTextEmail"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@android:drawable/edit_text"
+            android:inputType="textEmailAddress"
+            android:padding="10dp"
+            android:layout_marginBottom="20dp" />
+
+        <!-- Champ Mot de passe -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingBottom="5dp"
+            android:text="@string/mot_de_passe"
+            android:textSize="16sp" />
+
+        <EditText
+            android:id="@+id/editTextPassword"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@android:drawable/edit_text"
+            android:inputType="textPassword"
+            android:padding="10dp" />
+
+        <!-- Lien Mot de passe oublié -->
+        <TextView
+            android:id="@+id/textViewForgotPassword"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end"
+            android:layout_marginTop="5dp"
+            android:clickable="true"
+            android:focusable="true"
+            android:text="@string/mot_de_passe_oubli"
+            android:textColor="@color/violetPrimary"
+            android:textSize="14sp" />
+
+        <!-- Bouton Se connecter -->
+        <Button
+            android:id="@+id/buttonSeConnecter"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:backgroundTint="@color/violetPrimary"
+            android:padding="12dp"
+            android:text="@string/se_connecter"
+            android:textColor="@color/white"
+            android:textAllCaps="false" />
+
+        <!-- Bouton Connexion Invité -->
+        <Button
+            android:id="@+id/buttonConnexionInvite"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:backgroundTint="@color/violetAccent"
+            android:padding="12dp"
+            android:text="@string/se_connecter_invite"
+            android:textColor="@color/white"
+            android:textAllCaps="false" />
+
+        <!-- Bouton S'inscrire -->
+        <Button
+            android:id="@+id/buttonInscription"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:backgroundTint="@color/violetAccent"
+            android:padding="12dp"
+            android:text="@string/s_inscrire"
+            android:textColor="@color/white"
+            android:textAllCaps="false" />
+
+    </LinearLayout>
+</LinearLayout>
