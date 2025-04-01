@@ -15,6 +15,7 @@ import android.widget.Toast;
 
 import iut.dam.projetsaedon.MainActivity;
 import iut.dam.projetsaedon.R;
+import iut.dam.projetsaedon.accueil.AccueilActivity;
 import iut.dam.projetsaedon.admin.AdminActivity;
 import iut.dam.projetsaedon.register.RegisterActivity;
 
@@ -151,7 +152,7 @@ public class LoginActivity extends AppCompatActivity {
                             finish();
                         } else {
                             // Redirection utilisateur basique
-                            Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                            Intent intent = new Intent(LoginActivity.this, AccueilActivity.class);
                             startActivity(intent);
                             finish();
                         }
