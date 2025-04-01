@@ -8,4 +8,6 @@
     <color name="sky_blue">#b1e8e3</color>
     <color name="green">#3d9c59</color>
     <color name="light_gray">#d9d9d9</color>
+    <color name="violetPrimary">#6200EE</color>
+    <color name="violetAccent">#3700B3</color>
 </resources>

@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/registerRoot"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/white"
+    tools:context=".register.RegisterActivity">
+
+    <!-- Barre de titre -->
+    <TextView
+        android:id="@+id/textViewTitreInscription"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/inscription"
+        android:background="@color/violetPrimary"
+        android:padding="25dp"
+        android:textColor="@color/white"
+        android:textStyle="bold"
+        android:textAlignment="center"
+        android:textSize="20sp" />
+
+    <!-- Retour vers la page de connexion -->
+    <ImageView
+        android:id="@+id/imageRetour"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="10dp"
+        android:src="@android:drawable/ic_menu_revert"
+        android:contentDescription="@string/retour_connexion"
+        android:padding="5dp"
+        android:layout_gravity="start" />
+
+    <!-- Conteneur défilable pour le formulaire -->
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="10dp"
+        android:padding="20dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <!-- Prénom -->
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/prenom"
+                android:textSize="16sp"
+                android:layout_marginTop="10dp" />
+
+            <EditText
+                android:id="@+id/editPrenom"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@android:drawable/edit_text"
+                android:inputType="textPersonName"
+                android:padding="10dp" />
+
+            <!-- Nom -->
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/nom"
+                android:textSize="16sp"
+                android:layout_marginTop="10dp" />
+
+            <EditText
+                android:id="@+id/editNom"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@android:drawable/edit_text"
+                android:inputType="textPersonName"
+                android:padding="10dp" />
+
+            <!-- Email -->
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/email"
+                android:textSize="16sp"
+                android:layout_marginTop="10dp" />
+
+            <EditText
+                android:id="@+id/editEmail"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@android:drawable/edit_text"
+                android:inputType="textEmailAddress"
+                android:padding="10dp" />
+
+            <!-- Mobile -->
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/mobile"
+                android:textSize="16sp"
+                android:layout_marginTop="10dp" />
+
+            <EditText
+                android:id="@+id/editMobile"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@android:drawable/edit_text"
+                android:inputType="phone"
+                android:padding="10dp" />
+
+            <!-- Adresse -->
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/adresse"
+                android:textSize="16sp"
+                android:layout_marginTop="10dp" />
+
+            <EditText
+                android:id="@+id/editAdresse"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@android:drawable/edit_text"
+                android:inputType="textPostalAddress"
+                android:padding="10dp" />
+
+            <!-- Mot de passe -->
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/mot_de_passe"
+                android:textSize="16sp"
+                android:layout_marginTop="10dp" />
+
+            <EditText
+                android:id="@+id/editPassword"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@android:drawable/edit_text"
+                android:inputType="textPassword"
+                android:padding="10dp" />
+
+            <!-- Bouton Valider -->
+            <Button
+                android:id="@+id/buttonValiderInscription"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:backgroundTint="@color/violetPrimary"
+                android:text="@string/valider_inscription"
+                android:textColor="@color/white"
+                android:layout_marginTop="30dp"
+                android:padding="12dp" />
+
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>
