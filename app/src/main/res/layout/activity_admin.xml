@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <!-- Titre -->
+        <TextView
+            android:id="@+id/textViewTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Statistiques des dons"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            android:gravity="center"
+            android:padding="16dp" />
+
+        <!-- Année affichée -->
+        <TextView
+            android:id="@+id/textViewYear"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Année : "
+            android:textSize="18sp"
+            android:paddingTop="16dp" />
+
+        <!-- Total des dons uniques -->
+        <TextView
+            android:id="@+id/textViewOneTime"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Total des dons uniques : "
+            android:textSize="18sp"
+            android:paddingTop="16dp" />
+
+        <!-- Total des dons récurrents -->
+        <TextView
+            android:id="@+id/textViewRecurring"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Total des dons récurrents : "
+            android:textSize="18sp"
+            android:paddingTop="16dp" />
+
+        <!-- Bouton de rafraîchissement -->
+        <Button
+            android:id="@+id/buttonRefresh"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Rafraîchir"
+            android:layout_marginTop="24dp"
+            android:layout_gravity="center" />
+
+    </LinearLayout>
+</ScrollView>

@@ -15,4 +15,8 @@
     <string name="mobile" >Mobile</string>
     <string name="valider_inscription" >Valider inscription</string>
     <string name="adresse" >Code Postal</string>
+    <string name="nouveau_mot_au_passe" >Nouveau mot de passe</string>
+    <string name="confirmer_le_nouveau_mot_de_passe" >Confirmer le nouveau mot de passe</string>
+    <string name="valider" >Valider</string>
+    <string name="retour" >Retour</string>
 </resources>

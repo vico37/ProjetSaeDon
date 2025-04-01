@@ -12,9 +12,10 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import iut.dam.projetsaedon.AdminActivity;
+
 import iut.dam.projetsaedon.MainActivity;
 import iut.dam.projetsaedon.R;
+import iut.dam.projetsaedon.admin.AdminActivity;
 import iut.dam.projetsaedon.register.RegisterActivity;
 
 import org.json.JSONObject;
@@ -88,9 +89,7 @@ public class LoginActivity extends AppCompatActivity {
         textViewForgotPassword.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(LoginActivity.this,
-                        "Aller vers la récupération de mot de passe (à implémenter)",
-                        Toast.LENGTH_SHORT).show();
+                startActivity(new Intent(LoginActivity.this, ForgotPasswordActivity.class));
             }
         });
     }
