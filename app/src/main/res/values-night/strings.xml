@@ -1,5 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">ProjetSaeDon</string>
     <string name="accueil_actualites_text"><u>Actualités</u></string>
     <string name="btn_rech_asso_text">Rechercher une association</string>
     <string name="btn_voir_dons_text">Voir vos dons récurrents</string>
