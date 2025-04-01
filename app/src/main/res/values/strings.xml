@@ -1,3 +1,18 @@
 <resources>
     <string name="app_name">ProjetSaeDon</string>
+    <string name="connectez_vous" >Connectez vous</string>
+    <string name="logo_desc" >Desc</string>
+    <string name="email" >Email</string>
+    <string name="mot_de_passe" >Mot de passe</string>
+    <string name="mot_de_passe_oubli" >Mot de passe oublié</string>
+    <string name="se_connecter" >Se connecter</string>
+    <string name="se_connecter_invite" >Se connecter en tant qu\'invité</string>
+    <string name="s_inscrire" >S\'inscrire</string>
+    <string name="inscription" >Inscription</string>
+    <string name="retour_connexion" >Retour connexion</string>
+    <string name="prenom" >Prenom</string>
+    <string name="nom" >Nom</string>
+    <string name="mobile" >Mobile</string>
+    <string name="valider_inscription" >Valider inscription</string>
+    <string name="adresse" >Code Postal</string>
 </resources>
