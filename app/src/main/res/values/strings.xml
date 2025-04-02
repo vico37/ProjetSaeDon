@@ -30,4 +30,7 @@
     <string name="confirmer_le_nouveau_mot_de_passe" >Confirmer le nouveau mot de passe</string>
     <string name="valider" >Valider</string>
     <string name="retour" >Retour</string>
+    <string name="myAccount">Mon Compte</string>
+    <string name="edit_info">Modifier vos informations</string>
+    <string name="logout">Se déconnecter</string>
 </resources>
