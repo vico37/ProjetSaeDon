@@ -23,9 +23,11 @@ import iut.dam.projetsaedon.R;
 import iut.dam.projetsaedon.login.LoginActivity;
 
 /**
- *  RegisterActivity : permet à un utilisateur de s'inscrire via le script register.php
- *  en envoyant les données par une requête GET
- *  URL: http://donation.out-online.net/donation_app_bdd/register.php
+ * RegisterActivity permet à un utilisateur de s'inscrire via le script register.php
+ * Les données saisies (prénom, nom, email, mobile, adresse, mot de passe) sont envoyées
+ * par requête GET au script PHP
+ * Si l'inscription réussit, l'utilisateur est redirigé vers LoginActivity. Sinon, un message
+ * d'erreur est affiché.
  */
 public class RegisterActivity extends AppCompatActivity {
 
@@ -33,11 +35,20 @@ public class RegisterActivity extends AppCompatActivity {
     private Button buttonValiderInscription;
     private ImageView imageRetour;
 
+    /**
+     * Méthode appelée lors de la création de l'activité.
+     * Elle lie les vues définies dans le layout et configure les actions des boutons
+     * Notamment, le bouton de retour qui permet de revenir à LoginActivity
+     * et le bouton de validation envoie les informations saisies à la méthode inscrireUtilisateur()
+     *
+     * @param savedInstanceState sauvgarde d'état
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
 
+        // Liaison des vues
         editPrenom  = findViewById(R.id.editPrenom);
         editNom     = findViewById(R.id.editNom);
         editEmail   = findViewById(R.id.editEmail);
@@ -47,15 +58,15 @@ public class RegisterActivity extends AppCompatActivity {
         buttonValiderInscription = findViewById(R.id.buttonValiderInscription);
         imageRetour = findViewById(R.id.imageRetour);
 
-        // Gestion retour
-        if(imageRetour != null) {
+        // Gestion du bouton de retour
+        if (imageRetour != null) {
             imageRetour.setOnClickListener(v -> {
                 startActivity(new Intent(RegisterActivity.this, LoginActivity.class));
                 finish();
             });
         }
 
-        // Geston de l'inscription via le bouton
+        // Gestion du clic sur le bouton de validation de l'inscription
         buttonValiderInscription.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -80,7 +91,17 @@ public class RegisterActivity extends AppCompatActivity {
     }
 
     /**
-     * Méthode pour envoyer les infos au script register.php via GET
+     * Envoie les informations d'inscription au script register.php via une requête GET.
+     * Les paramètres envoyés sont : mail, mdp, nom, prenom, tel, adr
+     * En cas de succès, un message est affiché et l'utilisateur est redirigé vers LoginActivity.
+     * En cas d'erreur, le message d'erreur retourné par le serveur est affiché.
+     *
+     * @param prenom Le prénom de l'utilisateur.
+     * @param nom Le nom de l'utilisateur.
+     * @param mail L'email de l'utilisateur.
+     * @param tel Le numéro de téléphone de l'utilisateur.
+     * @param adr L'adresse de l'utilisateur.
+     * @param mdp Le mot de passe de l'utilisateur.
      */
     private void inscrireUtilisateur(String prenom, String nom, String mail, String tel, String adr, String mdp) {
         new Thread(() -> {
@@ -98,13 +119,11 @@ public class RegisterActivity extends AppCompatActivity {
 
                 URL url = new URL(baseUrl + params);
 
-                // Connexion
                 HttpURLConnection conn = (HttpURLConnection) url.openConnection();
                 conn.setRequestMethod("GET");
                 conn.setConnectTimeout(5000);
                 conn.setReadTimeout(5000);
 
-                // Lecture reponse
                 InputStream inputStream = conn.getInputStream();
                 BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
                 StringBuilder reponseBuilder = new StringBuilder();
@@ -115,11 +134,9 @@ public class RegisterActivity extends AppCompatActivity {
                 reader.close();
                 conn.disconnect();
 
-                // Conversion Json
                 String reponseJSON = reponseBuilder.toString();
                 JSONObject json = new JSONObject(reponseJSON);
 
-                // Traitement du Json
                 if (json.has("success")) {
                     runOnUiThread(() -> {
                         Toast.makeText(RegisterActivity.this,

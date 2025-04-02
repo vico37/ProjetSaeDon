@@ -27,6 +27,12 @@ import java.util.ArrayList;
 import iut.dam.projetsaedon.R;
 import iut.dam.projetsaedon.admin.RecurrentDonation;
 
+/**
+ * Activité affichant la liste des dons récurrents de l'utilisateur.
+ * Cette activité charge les dons récurrents depuis un service web et les affiche
+ * dans une ListView à l'aide d'un adapter personnalisé. Chaque item de la liste affiche
+ * les informations du don, et permet de désactiver un don actif via un bouton dédié.
+ */
 public class MyRecurringDonationsActivity extends AppCompatActivity {
 
     private ListView listViewRecurring;
@@ -35,9 +41,16 @@ public class MyRecurringDonationsActivity extends AppCompatActivity {
     private static final String LIST_URL = "http://donation.out-online.net/donation_app_bdd/user_donations_list.php";
     private static final String DISABLE_URL = "http://donation.out-online.net/donation_app_bdd/disable_donation.php";
     private String userId;
-
     private Button buttonBack;
 
+    /**
+     * Méthode appelée lors de la création de l'activité.
+     * Elle initialise l'interface utilisateur, configure la ListView avec son adapter
+     * et récupère l'identifiant utilisateur depuis les SharedPreferences.
+     * Elle lance ensuite le chargement des dons récurrents.
+     *
+     * @param savedInstanceState save d'état
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -54,7 +67,6 @@ public class MyRecurringDonationsActivity extends AppCompatActivity {
 
         loadDonations(userId);
 
-        // Bouton Retour : ferme l'activité
         buttonBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -63,6 +75,15 @@ public class MyRecurringDonationsActivity extends AppCompatActivity {
         });
     }
 
+    /**
+     * Charge les dons récurrents de l'utilisateur à partir du service web.
+     * La méthode effectue une requête HTTP GET sur l'URL définie pour récupérer la liste
+     * des dons récurrents. La réponse JSON est analysée pour créer des objets
+     * {@link RecurrentDonation} qui sont ajoutés à la liste. Ensuite, l'interface est mise à jour
+     * sur le thread principal.
+     *
+     * @param userId L'identifiant de l'utilisateur.
+     */
     private void loadDonations(String userId) {
         new Thread(() -> {
             try {
@@ -105,51 +126,13 @@ public class MyRecurringDonationsActivity extends AppCompatActivity {
         }).start();
     }
 
-    // Adapter interne
-    private class DonationAdapter extends ArrayAdapter<RecurrentDonation> {
-        public DonationAdapter(Context context, ArrayList<RecurrentDonation> donations) {
-            super(context, 0, donations);
-        }
-
-        @Override
-        public View getView(int position, View convertView, ViewGroup parent) {
-            RecurrentDonation donation = getItem(position);
-            if (convertView == null) {
-                convertView = LayoutInflater.from(getContext()).inflate(R.layout.item_my_donation, parent, false);
-            }
-            LinearLayout itemLayout = convertView.findViewById(R.id.itemLayout);
-            TextView textInfo = convertView.findViewById(R.id.textInfo);
-            Button buttonDesactiver = convertView.findViewById(R.id.buttonDesactiver);
-
-            // Préparation du texte d'information
-            String info = "Montant: " + donation.getMontant() + " €\n" +
-                    "Début: " + donation.getDebutdate() + "\n" +
-                    "Fin: " + ((donation.getEnddate() == null || donation.getEnddate().trim().isEmpty() || donation.getEnddate().equalsIgnoreCase("null"))
-                    ? "En cours" : donation.getEnddate()) + "\n" +
-                    "Fréquence: " + donation.getFrequency() + "\n" +
-                    "Actif: " + (donation.isActif() ? "Oui" : "Non");
-            textInfo.setText(info);
-
-            // Bouton Désactiver
-            if (!donation.isActif()) {
-                buttonDesactiver.setEnabled(false);
-                buttonDesactiver.setText("Désactivé");
-            } else {
-                buttonDesactiver.setEnabled(true);
-                buttonDesactiver.setText("Désactiver");
-                buttonDesactiver.setOnClickListener(v -> disableDonation(donation.getIdDonRec()));
-            }
-
-            // Définir le fond en fonction du statut
-            if(donation.isActif()) {
-                convertView.setBackgroundColor(Color.parseColor("#ccffcc")); // Vert clair
-            } else {
-                convertView.setBackgroundColor(Color.parseColor("#ffcccc")); // Rouge clair
-            }
-            return convertView;
-        }
-    }
-
+    /**
+     * Désactive un don récurrent en envoyant une requête au service web.
+     * Si la requête aboutit, l'activité affiche un message de confirmation et recharge la liste des dons.
+     * Sinon, un message d'erreur est affiché.
+     *
+     * @param idDonRec L'identifiant du don à désactiver.
+     */
     private void disableDonation(int idDonRec) {
         new Thread(() -> {
             try {
@@ -175,5 +158,66 @@ public class MyRecurringDonationsActivity extends AppCompatActivity {
                 runOnUiThread(() -> Toast.makeText(MyRecurringDonationsActivity.this, "Erreur réseau", Toast.LENGTH_SHORT).show());
             }
         }).start();
+    }
+
+    /**
+     * Adapter personnalisé pour afficher les dons récurrents dans la ListView.
+     */
+    private class DonationAdapter extends ArrayAdapter<RecurrentDonation> {
+
+        /**
+         * Constructeur de l'adaptateur.
+         *
+         * @param context   Le contexte d'exécution.
+         * @param donations La liste des dons récurrents à afficher.
+         */
+        public DonationAdapter(Context context, ArrayList<RecurrentDonation> donations) {
+            super(context, 0, donations);
+        }
+
+        /**
+         * Retourne la vue pour un élément de la liste.
+         * Chaque item affiche les informations du don et un bouton permettant de le désactiver
+         * si celui-ci est actif. La couleur de fond change en fonction de l'état du don.
+         *
+         * @param position    La position de l'élément dans la liste.
+         * @param convertView La vue à réutiliser, si possible.
+         * @param parent      Le ViewGroup parent.
+         * @return La vue de l'élément.
+         */
+        @Override
+        public View getView(int position, View convertView, ViewGroup parent) {
+            RecurrentDonation donation = getItem(position);
+            if (convertView == null) {
+                convertView = LayoutInflater.from(getContext()).inflate(R.layout.item_my_donation, parent, false);
+            }
+            LinearLayout itemLayout = convertView.findViewById(R.id.itemLayout);
+            TextView textInfo = convertView.findViewById(R.id.textInfo);
+            Button buttonDesactiver = convertView.findViewById(R.id.buttonDesactiver);
+
+            String info = "Montant: " + donation.getMontant() + " €\n" +
+                    "Début: " + donation.getDebutdate() + "\n" +
+                    "Fin: " + ((donation.getEnddate() == null || donation.getEnddate().trim().isEmpty() || donation.getEnddate().equalsIgnoreCase("null"))
+                    ? "En cours" : donation.getEnddate()) + "\n" +
+                    "Fréquence: " + donation.getFrequency() + "\n" +
+                    "Actif: " + (donation.isActif() ? "Oui" : "Non");
+            textInfo.setText(info);
+
+            if (!donation.isActif()) {
+                buttonDesactiver.setEnabled(false);
+                buttonDesactiver.setText("Désactivé");
+            } else {
+                buttonDesactiver.setEnabled(true);
+                buttonDesactiver.setText("Désactiver");
+                buttonDesactiver.setOnClickListener(v -> disableDonation(donation.getIdDonRec()));
+            }
+
+            if(donation.isActif()) {
+                convertView.setBackgroundColor(Color.parseColor("#ccffcc")); // Vert clair pour actif
+            } else {
+                convertView.setBackgroundColor(Color.parseColor("#ffcccc")); // Rouge clair pour inactif
+            }
+            return convertView;
+        }
     }
 }

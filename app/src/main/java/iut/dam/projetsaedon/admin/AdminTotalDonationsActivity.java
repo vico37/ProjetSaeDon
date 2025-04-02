@@ -20,6 +20,11 @@ import java.net.URLEncoder;
 import iut.dam.projetsaedon.R;
 import iut.dam.projetsaedon.login.LoginActivity;
 
+/**
+ * Activité permettant à l'administrateur de visualiser le total des dons d'une association.
+ * Cette activité récupère et affiche les totaux des dons uniques, des dons récurrents ainsi que le total général
+ * pour une année donnée. Les données sont récupérées via une requête HTTP GET vers le serveur.
+ */
 public class AdminTotalDonationsActivity extends AppCompatActivity {
 
     private EditText editTextYear;
@@ -28,6 +33,13 @@ public class AdminTotalDonationsActivity extends AppCompatActivity {
     private static final String TOTAL_URL = "http://donation.out-online.net/donation_app_bdd/admin_total_donations.php";
     private String associationId;
 
+    /**
+     * Méthode appelée lors de la création de l'activité.
+     * Initialise les composants de l'interface utilisateur, récupère les données via les SharedPreferences
+     * et définit les actions sur les boutons (rafraîchir, visualiser les dons récurrents et déconnexion).
+     *
+     * @param savedInstanceState Bundle contenant l'état précédemment sauvegardé de l'activité, ou null si c'est une création initiale.
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -42,10 +54,10 @@ public class AdminTotalDonationsActivity extends AppCompatActivity {
         textViewTotalRecurring = findViewById(R.id.textViewTotalRecurring);
         textViewTotalOverall = findViewById(R.id.textViewTotalOverall);
 
-        // On recupere les données stocké au login
         SharedPreferences prefs = getSharedPreferences("MyPrefs", MODE_PRIVATE);
         associationId = prefs.getString("associationId", "0");
 
+        // Bouton permettant de rafraîchir les totaux
         buttonRefresh.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -53,6 +65,7 @@ public class AdminTotalDonationsActivity extends AppCompatActivity {
             }
         });
 
+        // Bouton permettant de visualiser les dons récurrents
         buttonViewRecurring.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -63,9 +76,11 @@ public class AdminTotalDonationsActivity extends AppCompatActivity {
             }
         });
 
+        // Bouton de déconnexion
         buttonLogout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                // Suppression des données de session
                 SharedPreferences prefs = getSharedPreferences("MyPrefs", MODE_PRIVATE);
                 SharedPreferences.Editor editor = prefs.edit();
                 editor.remove("userId");
@@ -80,9 +95,18 @@ public class AdminTotalDonationsActivity extends AppCompatActivity {
             }
         });
 
+        // Chargement initial des totaux dès l'ouverture de l'activité
         chargerTotaux();
     }
 
+    /**
+     * Charge les totaux des dons à partir du serveur via une requête HTTP GET.
+     * La méthode récupère l'année spécifiée dans l'interface (ou l'année courante si aucun champ n'est renseigné)
+     * et envoie une requête avec l'identifiant de l'association. La réponse JSON est ensuite traitée pour extraire
+     * le nom de l'association et les totaux des dons uniques, récurrents et le total général. L'interface utilisateur
+     * est mise à jour sur le thread principal.
+     * En cas d'erreur (par exemple, problème de connexion ou de parsing), un message Toast est affiché.
+     */
     private void chargerTotaux() {
         new Thread(new Runnable() {
             @Override

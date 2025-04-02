@@ -5,35 +5,53 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
-    android:padding="8dp">
+    android:padding="16dp"
+    android:layout_margin="8dp"
+    android:background="@color/white"
+    android:elevation="4dp">
 
     <TextView
         android:id="@+id/textMontant"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Montant:" />
+        android:text="Montant:"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        android:textColor="@color/dark_blue" />
 
     <TextView
         android:id="@+id/textFrequency"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Fréquence:" />
+        android:text="Fréquence:"
+        android:textSize="16sp"
+        android:textColor="@color/black"
+        android:layout_marginTop="4dp" />
 
     <TextView
         android:id="@+id/textDebut"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Début:" />
+        android:text="Début:"
+        android:textSize="16sp"
+        android:textColor="@color/black"
+        android:layout_marginTop="4dp" />
 
     <TextView
         android:id="@+id/textEnd"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Fin:" />
+        android:text="Fin:"
+        android:textSize="16sp"
+        android:textColor="@color/black"
+        android:layout_marginTop="4dp" />
 
     <TextView
         android:id="@+id/textActif"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Actif:" />
+        android:text="Actif:"
+        android:textSize="16sp"
+        android:textColor="@color/black"
+        android:layout_marginTop="4dp" />
 </LinearLayout>

@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".admin.AdminTotalDonationsActivity"
-    android:background="@color/white"
+    android:background="@color/BleuFond"
     android:orientation="vertical">
 
         <!-- Barre de titre -->
@@ -18,7 +18,7 @@
             android:textSize="24sp"
             android:textStyle="bold"
             android:gravity="center"
-            android:background="@color/violetPrimary"
+            android:background="@color/dark_blue"
             android:textColor="@color/white"
             android:padding="20dp" />
 
@@ -63,7 +63,7 @@
             android:layout_height="wrap_content"
             android:text="Rafraîchir"
             android:layout_gravity="center"
-            android:backgroundTint="@color/violetPrimary"
+            android:backgroundTint="@color/violetAccent"
             android:textColor="@color/white"
             android:padding="12dp"
             android:layout_marginBottom="16dp" />
@@ -117,7 +117,7 @@
             android:text="Déconnexion"
             android:layout_marginTop="16dp"
             android:layout_gravity="center"
-            android:backgroundTint="@color/violetPrimary"
+            android:backgroundTint="@color/violetAccent"
             android:textColor="@color/white"
             android:padding="12dp" />
 </LinearLayout>

@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="@color/white"
+    android:background="@color/BleuFond"
     tools:context=".register.RegisterActivity">
 
     <!-- Barre de titre -->
@@ -15,7 +15,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/inscription"
-        android:background="@color/violetPrimary"
+        android:background="@color/dark_blue"
         android:padding="25dp"
         android:textColor="@color/white"
         android:textStyle="bold"
@@ -147,7 +147,7 @@
                 android:id="@+id/buttonValiderInscription"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:backgroundTint="@color/violetPrimary"
+                android:backgroundTint="@color/violetAccent"
                 android:text="@string/valider_inscription"
                 android:textColor="@color/white"
                 android:layout_marginTop="30dp"

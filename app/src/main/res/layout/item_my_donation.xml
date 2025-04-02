@@ -21,7 +21,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Désactiver"
-        android:backgroundTint="@color/violetAccent"
+        android:backgroundTint="@color/dark_blue"
         android:textColor="@color/white"
         android:layout_marginTop="8dp"/>
 </LinearLayout>

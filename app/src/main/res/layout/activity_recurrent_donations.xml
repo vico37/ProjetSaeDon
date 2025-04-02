@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="@color/white"
+    android:background="@color/BleuFond"
     tools:context=".admin.RecurrentDonationsActivity">
 
     <!-- Titre de la page -->
@@ -19,7 +19,7 @@
         android:textStyle="bold"
         android:gravity="center"
         android:padding="25dp"
-        android:background="@color/violetPrimary"
+        android:background="@color/dark_blue"
         android:textColor="@color/white" />
 
     <!-- ListView prenant tout l'espace restant -->
@@ -39,7 +39,7 @@
         android:text="Retour"
         android:layout_marginTop="20dp"
         android:layout_gravity="center"
-        android:backgroundTint="@color/violetPrimary"
+        android:backgroundTint="@color/violetAccent"
         android:textColor="@color/white"
         android:padding="20dp" />
 

@@ -11,7 +11,6 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-
 import iut.dam.projetsaedon.R;
 import iut.dam.projetsaedon.accueil.AccueilActivity;
 import iut.dam.projetsaedon.admin.AdminTotalDonationsActivity;
@@ -27,6 +26,17 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLEncoder;
 
+/**
+ * LoginActivity permet à l'utilisateur de se connecter à l'application
+ * Cette activité offre plusieurs options :
+ *   Connexion classique via email et mot de passe
+ *   Connexion en tant qu'invité
+ *   Inscription (redirection vers RegisterActivity)
+ *   Récupération du mot de passe oublié (redirection vers ForgotPasswordActivity)
+ * Après la validation des identifiants via le PHP on stock
+ * userId, userRole et associationId dans les SharedPreferences en fonction du rôle,de l'utilisateur
+ * on redirigé vers AdminTotalDonationsActivity ou vers AccueilActivity
+ */
 public class LoginActivity extends AppCompatActivity {
 
     private EditText editTextEmail;
@@ -35,7 +45,6 @@ public class LoginActivity extends AppCompatActivity {
     private Button buttonConnexionInvite;
     private Button buttonInscription;
     private TextView textViewForgotPassword;
-
     private static final String LOGIN_URL = "http://donation.out-online.net/donation_app_bdd/login.php";
 
     @Override
@@ -50,7 +59,7 @@ public class LoginActivity extends AppCompatActivity {
         buttonInscription = findViewById(R.id.buttonInscription);
         textViewForgotPassword = findViewById(R.id.textViewForgotPassword);
 
-        // Gestion click sur se connecter
+        // Gestion du clic sur Se connecter
         buttonSeConnecter.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -67,17 +76,15 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
 
-        // Gestion click sur connexion en tant qu'invité
+        // Gestion du clic sur Connexion en tant qu'invité
         buttonConnexionInvite.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(LoginActivity.this,
-                        "Connexion en tant qu'invité (à implémenter)",
-                        Toast.LENGTH_SHORT).show();
+                startActivity(new Intent(LoginActivity.this, AccueilActivity.class));
             }
         });
 
-        // Gestion click sur s'inscrire
+        // Gestion du clic sur S'inscrire
         buttonInscription.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -85,7 +92,7 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
 
-        // Gestion click sur mot de passe oublie
+        // Gestion du clic sur Mot de passe oublié
         textViewForgotPassword.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -95,12 +102,21 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     /**
-     * Méthode pour vérifier le mail et le mdp avec le script login.php
+     * Vérifie les identifiants de l'utilisateur en utilisant login.php
+     *
+     * Si on a une erreur on l'affiche
+     * Sinon, idUser, isAdmin, association_id sont enregistrées dans les SharedPreferences
+     * puis on redirige vers l'activité correspondante en fonction du role
+     *
+     * @param mail L'adresse email saisie par l'utilisateur.
+     * @param mdp  Le mot de passe saisi par l'utilisateur.
      */
     private void verifierIdentifiants(String mail, String mdp) {
         new Thread(() -> {
             try {
-                String urlParams = "?mail=" + URLEncoder.encode(mail, "UTF-8") + "&mdp=" + URLEncoder.encode(mdp, "UTF-8");
+                // Creation url pour le php
+                String urlParams = "?mail=" + URLEncoder.encode(mail, "UTF-8")
+                        + "&mdp=" + URLEncoder.encode(mdp, "UTF-8");
 
                 URL url = new URL(LOGIN_URL + urlParams);
                 HttpURLConnection conn = (HttpURLConnection) url.openConnection();
@@ -108,18 +124,18 @@ public class LoginActivity extends AppCompatActivity {
                 conn.setConnectTimeout(5000);
                 conn.setReadTimeout(5000);
 
-                // Lecture
+                // Lecture réponse
                 InputStream is = conn.getInputStream();
                 BufferedReader br = new BufferedReader(new InputStreamReader(is));
                 StringBuilder sb = new StringBuilder();
                 String line;
-                while((line = br.readLine()) != null){
+                while((line = br.readLine()) != null) {
                     sb.append(line);
                 }
                 br.close();
                 conn.disconnect();
 
-                // Gestion Json
+                // Traitement du JSON
                 String reponse = sb.toString();
                 JSONObject json = new JSONObject(reponse);
 
@@ -128,11 +144,11 @@ public class LoginActivity extends AppCompatActivity {
                         Toast.makeText(LoginActivity.this, json.optString("error"), Toast.LENGTH_LONG).show();
                     });
                 } else {
-                    String userId   = json.optString("idUser");
-                    String userRole = json.optString("isAdmin"); //admin ou doneur
+                    String userId = json.optString("idUser");
+                    String userRole = json.optString("isAdmin"); // "admin" ou "doneur"
                     String associationId = json.optString("association_id");
 
-                    // Stocker des fonctionalite plus loin
+                    // Stocker dans le SharedPreference
                     SharedPreferences prefs = getSharedPreferences("MyPrefs", MODE_PRIVATE);
                     SharedPreferences.Editor editor = prefs.edit();
                     editor.putString("userId", userId);
@@ -140,19 +156,19 @@ public class LoginActivity extends AppCompatActivity {
                     editor.putString("associationId", associationId);
                     editor.apply();
 
-                    // Redirection en fonction du role
+                    // Redirection en fonction du rrole
                     runOnUiThread(() -> {
                         Toast.makeText(LoginActivity.this,
                                 "Votre ID = " + userId + ", Votre Role = " + userRole,
                                 Toast.LENGTH_LONG).show();
 
                         if("admin".equalsIgnoreCase(userRole)) {
-                            // Redirection adminstration
+                            // Redirection vers l'administration
                             Intent intent = new Intent(LoginActivity.this, AdminTotalDonationsActivity.class);
                             startActivity(intent);
                             finish();
                         } else {
-                            // Redirection utilisateur basique
+                            // Redirection vers l'accueil
                             Intent intent = new Intent(LoginActivity.this, AccueilActivity.class);
                             startActivity(intent);
                             finish();
@@ -162,9 +178,7 @@ public class LoginActivity extends AppCompatActivity {
             } catch (Exception e) {
                 e.printStackTrace();
                 runOnUiThread(() -> {
-                    Toast.makeText(LoginActivity.this,
-                            "Erreur réseau : " + e.getMessage(),
-                            Toast.LENGTH_LONG).show();
+                    Toast.makeText(LoginActivity.this, "Erreur réseau : " + e.getMessage(), Toast.LENGTH_LONG).show();
                 });
             }
         }).start();

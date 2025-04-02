@@ -19,6 +19,12 @@ import java.net.URLEncoder;
 import java.util.ArrayList;
 import iut.dam.projetsaedon.R;
 
+/**
+ * Activité affichant la liste des dons récurrents d'une association.
+ * Les dons récurrents sont récupérés depuis un service web via une requête HTTP GET.
+ * La réponse JSON est ensuite transformée en une liste d'objets {@link RecurrentDonation},
+ * qui sont affichés dans une ListView à l'aide d'un {@link RecurrentDonationAdapter}.
+ */
 public class RecurrentDonationsActivity extends AppCompatActivity {
 
     private ListView listViewRecurring;
@@ -27,6 +33,13 @@ public class RecurrentDonationsActivity extends AppCompatActivity {
     private Button buttonBack;
     private static final String LIST_URL = "http://donation.out-online.net/donation_app_bdd/list_recurrent_donations.php";
 
+    /**
+     * Méthode appelée lors de la création de l'activité.
+     * Initialise les composants de l'interface utilisateur, configure l'adapter de la ListView,
+     * et lance le chargement des dons récurrents pour l'association courante.
+     *
+     * @param savedInstanceState Save état
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -45,7 +58,6 @@ public class RecurrentDonationsActivity extends AppCompatActivity {
 
         chargerDonations(associationId);
 
-        // Buton retour
         buttonBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -54,15 +66,19 @@ public class RecurrentDonationsActivity extends AppCompatActivity {
         });
     }
 
+    /**
+     * Charge la liste des dons récurrents pour l'association spécifiée via une requête HTTP GET.
+     * La réponse JSON est analysée pour créer des objets {@link RecurrentDonation} qui sont ajoutés à la liste.
+     * Une fois la liste mise à jour, l'adapter de la ListView est notifié pour rafraîchir l'affichage.
+     *
+     * @param associationId L'identifiant de l'association pour laquelle récupérer les dons récurrents.
+     */
     private void chargerDonations(String associationId) {
         new Thread(new Runnable(){
             @Override
             public void run(){
                 try {
                     String params = "?associationId=" + URLEncoder.encode(associationId, "UTF-8");
-                    /*if (year != null && !year.isEmpty()){
-                        params += "&year=" + URLEncoder.encode(year, "UTF-8");
-                    }*/
                     URL url = new URL(LIST_URL + params);
                     HttpURLConnection conn = (HttpURLConnection) url.openConnection();
                     conn.setRequestMethod("GET");
