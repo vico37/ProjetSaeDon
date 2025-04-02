@@ -2,19 +2,16 @@ package iut.dam.projetsaedon.donation;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
-import android.content.DialogInterface;
+
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.content.Intent;
-import android.net.Uri;
-import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 import org.json.JSONObject;
 import java.io.BufferedReader;
-import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.net.HttpURLConnection;
@@ -22,7 +19,6 @@ import java.net.URL;
 import java.net.URLEncoder;
 import iut.dam.projetsaedon.R;
 import iut.dam.projetsaedon.accueil.AccueilActivity;
-import iut.dam.projetsaedon.asso.AssociationDetailsActivity;
 
 public class DonationNormalActivity extends AppCompatActivity {
 

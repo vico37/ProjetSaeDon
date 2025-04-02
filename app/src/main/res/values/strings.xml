@@ -3,7 +3,7 @@
     <string name="accueil_actualites_text"><u>Actualités</u></string>
     <string name="btn_rech_asso_text">Rechercher une association</string>
     <string name="btn_voir_dons_text">Voir vos dons récurrents</string>
-    <string name="bar_rech_asos_text">Recherchez</string>
+    <string name="bar_rech_asos_text">Recherchez un thème ou un nom</string>
     <string name="association_list_sous_bar_rech_text">Cliquez pour afficher les informations de l\'association</string>
     <string name="title_nom_asso_default_text">Nom Association</string>
     <string name="subtitle_contact_text">Contact</string>
@@ -38,4 +38,6 @@
     <string name="menu_recherche">Recherche</string>
     <string name="menu_mon_compte">Mon compte</string>
     <string name="menu_parametres">Paramètres</string>
+    <string name="association_nom">nom_assoc</string>
+    <string name="association_theme">Theme :</string>
 </resources>

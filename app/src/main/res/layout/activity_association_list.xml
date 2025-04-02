@@ -8,14 +8,14 @@
     android:orientation="vertical"
     tools:context=".associations.AssociationListActivity">
 
-<!--    <com.google.android.material.search.SearchBar-->
-<!--        android:layout_marginLeft="20sp"-->
-<!--        android:layout_marginRight="20sp"-->
-<!--        android:layout_marginTop="60sp"-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:id="@+id/bar_rech_assos_text"-->
-<!--        android:text="@string/bar_rech_asos_text"/>-->
+    <SearchView
+        android:layout_marginTop="60sp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/association_list_search_view"
+        android:queryHint="@string/bar_rech_asos_text"
+        android:iconifiedByDefault="false"
+        />
 
     <TextView
         android:layout_width="match_parent"
@@ -28,6 +28,9 @@
         />
 
     <ListView
+        android:id="@+id/association_list_view"
+        android:divider="@android:color/transparent"
+        android:dividerHeight="10sp"
         android:layout_marginTop="60sp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
