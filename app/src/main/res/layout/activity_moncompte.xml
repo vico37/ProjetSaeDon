@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <!-- Titre -->
+    <TextView
+        android:id="@+id/textViewConnexionTitre"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/myAccount"
+        android:background="@color/violetPrimary"
+        android:padding="25dp"
+        android:textColor="@color/white"
+        android:textStyle="bold"
+        android:textAlignment="center"
+        android:textSize="20sp" />
+    <!-- NOM Prénom -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="40dp">
+        <TextView
+            android:id="@+id/txtNomCompte"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/nom"
+            android:textColor="@color/black"
+            android:textAllCaps="true"
+            android:layout_marginStart="20dp"
+            android:textSize="20sp"
+            android:textStyle="bold"/>
+        <TextView
+            android:id="@+id/txtPrenomCompte"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/prenom"
+            android:textColor="@color/black"
+            android:layout_marginStart="20dp"
+            android:textSize="20sp"
+            android:textStyle="bold"/>
+    </LinearLayout>
+    <!-- Email, Téléphone, Adresse -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginStart="10dp"
+        android:layout_marginBottom="70dp">
+        <TextView
+            android:id="@+id/txtEmailCompte"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/email"
+            android:layout_marginStart="20dp"
+            android:textSize="15sp"
+            android:textStyle="bold"/>
+        <TextView
+            android:id="@+id/txtTelCompte"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/mobile"
+            android:layout_marginStart="20dp"
+            android:textSize="15sp"
+            android:textStyle="bold"/>
+
+        <TextView
+            android:id="@+id/txtAdresseCompte"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/adresse"
+            android:layout_marginStart="20dp"
+            android:textSize="15sp"
+            android:textStyle="bold"/>
+    </LinearLayout>
+    <!-- Bouton Modifier -->
+    <Button
+        android:id="@+id/btnEditProfil"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:backgroundTint="@color/violetAccent"
+        android:padding="12dp"
+        android:text="@string/edit_info"
+        android:textColor="@color/white"
+        android:textAllCaps="false" />
+    <!-- Séparateur -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp">
+        <View
+            android:id="@+id/separator3"
+            android:layout_width="0dp"
+            android:layout_height="2dp"
+            android:layout_weight="1"
+            android:layout_marginEnd="16dp"
+            android:layout_marginStart="16dp"
+            android:background="@color/violetAccent"
+            android:layout_gravity="center_vertical"/>
+    </LinearLayout>
+    <!-- Bouton Voir Dons récurrents -->
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="75sp"
+        app:cardCornerRadius="10sp"
+        android:layout_marginTop="30sp"
+        android:layout_marginRight="20sp"
+        android:layout_marginLeft="20sp">
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/green"
+            android:id="@+id/btn_voir_dons"
+            android:text="@string/btn_voir_dons_text"
+            android:textColor="@color/white"
+            android:textSize="20sp"/>
+    </androidx.cardview.widget.CardView>
+    <Button
+        android:id="@+id/btnLogout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginStart="20sp"
+        android:layout_marginEnd="20sp"
+        android:backgroundTint="@color/redLight"
+        android:padding="12dp"
+        android:text="@string/logout"
+        android:textColor="@color/white"
+        android:textAllCaps="false" />
+</LinearLayout>
