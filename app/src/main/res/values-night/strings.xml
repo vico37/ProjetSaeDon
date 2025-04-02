@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="accueil_actualites_text"><u>Actualités</u></string>
-    <string name="btn_rech_asso_text">Rechercher une association</string>
+    <string name="btn_rech_asso_text">Recherchez un thème ou un nom</string>
     <string name="btn_voir_dons_text">Voir vos dons récurrents</string>
     <string name="bar_rech_asos_text">Recherchez un thème ou un nom</string>
     <string name="association_list_sous_bar_rech_text">Cliquez pour afficher les informations de l\'association</string>

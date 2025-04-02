@@ -24,6 +24,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="20sp"
+        android:textStyle="bold"
         android:text="@string/association_nom"/>
 
 <!--    <TextView-->
@@ -50,6 +51,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/association_desc"
         android:id="@+id/association_theme"
+        android:textStyle="italic"
         android:text="@string/association_theme"
         />
   </RelativeLayout>

@@ -57,14 +57,14 @@ public class Association {
         Type type = new TypeToken<List<AssoTheme>>(){}.getType();
         List<AssoTheme> assoc = gson.fromJson(json, type);
 
-        String themes = "Theme : ";
+        String themes = "Thème : ";
 
         for(AssoTheme assoTheme : assoc) {
             if (assoTheme.getIdAsso() == id) {
-                themes += assoTheme.getThemeNom() + " ";
+                themes += assoTheme.getThemeNom() + ", ";
             }
         }
-
+        themes = themes.substring(0, themes.length()-2);
         return themes;
     }
 
