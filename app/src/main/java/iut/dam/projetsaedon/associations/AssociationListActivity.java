@@ -77,7 +77,8 @@ public class AssociationListActivity extends AppCompatActivity {
     private void filterList(String text) {
         List<Association> filteredList = new ArrayList<>();
         for (Association association : associationsList) {
-            if (association.getNomAsso().toLowerCase().contains(text.toLowerCase())) {
+            if (association.getNomAsso().toLowerCase().contains(text.toLowerCase())
+                    || association.getThemesAsso().toLowerCase().contains(text.toLowerCase())) {
                 filteredList.add(association);
             }
         }
@@ -106,6 +107,35 @@ public class AssociationListActivity extends AppCompatActivity {
                             Log.d(TAG, "Result resp appliances: " + response.getResult());
 
                             associationsList = Association.getAssociationsFromJson(response.getResult());
+                            // Mise à jour de la liste visuelle
+//                            ListView associationListView = findViewById(R.id.association_list_view);
+//                            adapterView = new AssociationListAdapter(context, associationsList);
+//                            associationListView.setAdapter(adapterView);
+
+                            getRemoteAssociationTheme(context);
+                        } else {
+                            Log.d(TAG, "! : " + (e == null ? "oops" : e.getMessage()));
+                        }
+                    }
+                });
+    }
+
+    public void getRemoteAssociationTheme(Context context) {
+        String urlString = "http://donation.out-online.net/donation_app_bdd/getAssosTheme.php";
+        Ion.with(context)
+                .load(urlString)
+                .asString()
+                .withResponse()
+                .setCallback(new FutureCallback<Response<String>>() {
+                    @Override
+                    public void onCompleted(Exception e, Response<String> response) {
+                        if (e == null && response != null) {
+                            Log.d(TAG, "Http code: " + response.getHeaders().code());
+                            Log.d(TAG, "Result resp appliances: " + response.getResult());
+
+                            for (Association association : associationsList) {
+                                association.setThemesAsso(Association.getAssociationThemesFromJsonWithId(response.getResult(), association.getId()));
+                            }
 
                             // Mise à jour de la liste visuelle
                             ListView associationListView = findViewById(R.id.association_list_view);

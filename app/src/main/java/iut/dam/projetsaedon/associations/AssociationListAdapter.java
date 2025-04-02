@@ -58,12 +58,16 @@ public class AssociationListAdapter extends BaseAdapter {
         Association currentAssociation = (Association) getItem(position);
         String associationNom = currentAssociation.getNomAsso();
         String associationDesc = currentAssociation.getDescAsso();
+        String associationTheme = currentAssociation.getThemesAsso();
 
         TextView associationNomTextView = convertView.findViewById(R.id.association_nom);
         associationNomTextView.setText(associationNom);
 
         TextView associationDescTextView = convertView.findViewById(R.id.association_desc);
         associationDescTextView.setText(associationDesc);
+
+        TextView associationThemeTextView = convertView.findViewById(R.id.association_theme);
+        associationThemeTextView.setText(associationTheme);
 
         return convertView;
     }

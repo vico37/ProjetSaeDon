@@ -25,10 +25,15 @@ public class Association {
     private String nomAsso;
     private String descAsso;
 
+    private String themesAsso;
     public Association(int id, String nomAsso, String descAsso) {
         this.id = id;
         this.nomAsso = nomAsso;
         this.descAsso = descAsso;
+    }
+
+    public void setThemesAsso(String themesAsso) {
+        this.themesAsso = themesAsso;
     }
 
     public int getId() {
@@ -43,12 +48,32 @@ public class Association {
         return descAsso;
     }
 
+    public String getThemesAsso() {
+        return themesAsso;
+    }
+
+    public static String getAssociationThemesFromJsonWithId(String json, int id) {
+        Gson gson = new Gson();
+        Type type = new TypeToken<List<AssoTheme>>(){}.getType();
+        List<AssoTheme> assoc = gson.fromJson(json, type);
+
+        String themes = "Theme : ";
+
+        for(AssoTheme assoTheme : assoc) {
+            if (assoTheme.getIdAsso() == id) {
+                themes += assoTheme.getThemeNom() + " ";
+            }
+        }
+
+        return themes;
+    }
+
     public static List<Association> getAssociationsFromJson(String json) {
         Gson gson = new Gson();
         Type type = new TypeToken<List<Association>>(){}.getType();
-        List<Association> appliances = gson.fromJson(json, type);
+        List<Association> associations = gson.fromJson(json, type);
 
-        return appliances;
+        return associations;
     }
 
 

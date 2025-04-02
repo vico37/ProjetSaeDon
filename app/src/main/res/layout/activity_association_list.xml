@@ -9,10 +9,12 @@
     tools:context=".associations.AssociationListActivity">
 
     <SearchView
+        android:layout_marginTop="60sp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/association_list_search_view"
         android:queryHint="@string/bar_rech_asos_text"
+        android:iconifiedByDefault="false"
         />
 
     <TextView
