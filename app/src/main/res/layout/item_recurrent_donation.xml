@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/itemLayout"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="8dp">
+
+    <TextView
+        android:id="@+id/textMontant"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Montant:" />
+
+    <TextView
+        android:id="@+id/textFrequency"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Fréquence:" />
+
+    <TextView
+        android:id="@+id/textDebut"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Début:" />
+
+    <TextView
+        android:id="@+id/textEnd"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Fin:" />
+
+    <TextView
+        android:id="@+id/textActif"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Actif:" />
+</LinearLayout>

@@ -5,7 +5,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -13,10 +12,9 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 
-import iut.dam.projetsaedon.MainActivity;
 import iut.dam.projetsaedon.R;
 import iut.dam.projetsaedon.accueil.AccueilActivity;
-import iut.dam.projetsaedon.admin.AdminActivity;
+import iut.dam.projetsaedon.admin.AdminTotalDonationsActivity;
 import iut.dam.projetsaedon.register.RegisterActivity;
 
 import org.json.JSONObject;
@@ -131,12 +129,14 @@ public class LoginActivity extends AppCompatActivity {
                 } else {
                     String userId   = json.optString("idUser");
                     String userRole = json.optString("isAdmin"); //admin ou doneur
+                    String associationId = json.optString("association_id");
 
                     // Stocker des fonctionalite plus loin
                     SharedPreferences prefs = getSharedPreferences("MyPrefs", MODE_PRIVATE);
                     SharedPreferences.Editor editor = prefs.edit();
                     editor.putString("userId", userId);
                     editor.putString("userRole", userRole);
+                    editor.putString("associationId", associationId);
                     editor.apply();
 
                     // Redirection en fonction du role
@@ -147,7 +147,7 @@ public class LoginActivity extends AppCompatActivity {
 
                         if("admin".equalsIgnoreCase(userRole)) {
                             // Redirection adminstration
-                            Intent intent = new Intent(LoginActivity.this, AdminActivity.class);
+                            Intent intent = new Intent(LoginActivity.this, AdminTotalDonationsActivity.class);
                             startActivity(intent);
                             finish();
                         } else {
