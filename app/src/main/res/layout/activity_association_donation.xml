@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/donationLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/white"
+    android:padding="16dp">
+
+    <!-- Barre de titre -->
+    <TextView
+        android:id="@+id/textViewDonationTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Faire un don"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        android:gravity="center"
+        android:background="@color/violetPrimary"
+        android:textColor="@color/white"
+        android:padding="16dp" />
+
+    <!-- Affichage du nom (ou de l'ID) de l'association -->
+    <TextView
+        android:id="@+id/textViewAssociationInfo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Donation pour l'association :"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:gravity="center"
+        android:textColor="@color/black"
+        android:padding="16dp" />
+
+    <!-- Message d'information -->
+    <TextView
+        android:id="@+id/textViewDonationMessage"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Ici, vous pourrez réaliser votre don."
+        android:textSize="16sp"
+        android:padding="16dp"
+        android:textColor="@color/black" />
+</LinearLayout>

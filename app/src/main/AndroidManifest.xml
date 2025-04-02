@@ -13,7 +13,21 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.ProjetSaeDon"
         tools:targetApi="31">
+        <activity
+            android:name=".asso.AssociationDetailsActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+                <data
+                    android:scheme="donationapp"
+                    android:host="open_asso" />
+            </intent-filter>
+        </activity>
         <activity android:name="iut.dam.projetsaedon.admin.AdminTotalDonationsActivity"
+            android:exported="true" />
+        <activity android:name="iut.dam.projetsaedon.mesdonsrecurents.MyRecurringDonationsActivity"
             android:exported="true" />
         <activity android:name="iut.dam.projetsaedon.admin.RecurrentDonationsActivity"
             android:exported="true" />

@@ -1,17 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView
+<LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/adminTotalRoot"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".admin.AdminTotalDonationsActivity">
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:background="@color/white">
+    tools:context=".admin.AdminTotalDonationsActivity"
+    android:background="@color/white"
+    android:orientation="vertical">
 
         <!-- Barre de titre -->
         <TextView
@@ -24,7 +20,7 @@
             android:gravity="center"
             android:background="@color/violetPrimary"
             android:textColor="@color/white"
-            android:padding="25dp" />
+            android:padding="20dp" />
 
         <!-- Nom de l'association -->
         <TextView
@@ -124,6 +120,4 @@
             android:backgroundTint="@color/violetPrimary"
             android:textColor="@color/white"
             android:padding="12dp" />
-
-    </LinearLayout>
-</ScrollView>
+</LinearLayout>

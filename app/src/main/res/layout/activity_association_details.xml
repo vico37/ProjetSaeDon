@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/scrollViewAssociation"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    tools:context=".asso.AssociationDetailsActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <!-- Barre de titre -->
+        <TextView
+            android:id="@+id/textViewTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Présentation de l'association"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            android:gravity="center"
+            android:background="@color/violetPrimary"
+            android:textColor="@color/white"
+            android:padding="16dp" />
+
+        <!-- Nom de l'association -->
+        <TextView
+            android:id="@+id/textViewNomAsso"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Nom : "
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:paddingTop="16dp"
+            android:textColor="@color/black" />
+
+        <!-- Descriptif -->
+        <TextView
+            android:id="@+id/textViewDescriptif"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Descriptif : "
+            android:textSize="16sp"
+            android:paddingTop="8dp"
+            android:textColor="@color/black" />
+
+        <!-- Mail -->
+        <TextView
+            android:id="@+id/textViewMail"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Mail : "
+            android:textSize="16sp"
+            android:paddingTop="8dp"
+            android:textColor="@color/black" />
+
+        <!-- Téléphone -->
+        <TextView
+            android:id="@+id/textViewTel"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Téléphone : "
+            android:textSize="16sp"
+            android:paddingTop="8dp"
+            android:textColor="@color/black" />
+
+        <!-- Adresse -->
+        <TextView
+            android:id="@+id/textViewAdresse"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Adresse : "
+            android:textSize="16sp"
+            android:paddingTop="8dp"
+            android:textColor="@color/black" />
+
+        <!-- Boutons d'action -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:paddingTop="24dp">
+
+            <Button
+                android:id="@+id/buttonDonSimple"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Don simple"
+                android:backgroundTint="@color/violetPrimary"
+                android:textColor="@color/white"
+                android:padding="12dp"
+                android:layout_marginEnd="8dp" />
+
+            <Button
+                android:id="@+id/buttonDonRecurrent"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Don récurrent"
+                android:backgroundTint="@color/violetAccent"
+                android:textColor="@color/white"
+                android:padding="12dp" />
+        </LinearLayout>
+    </LinearLayout>
+</ScrollView>
