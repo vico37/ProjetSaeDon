@@ -2,6 +2,7 @@ package iut.dam.projetsaedon.associations;
 
 import static android.content.ContentValues.TAG;
 
+import android.annotation.SuppressLint;
 import android.app.Application;
 import android.content.Context;
 import android.util.Log;
@@ -44,9 +45,10 @@ public class AssociationListAdapter extends BaseAdapter {
         return 0;
     }
 
+    @SuppressLint("ViewHolder")
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        convertView = inflater.inflate(R.layout.adapter_association, null);
+        convertView = inflater.inflate(R.layout.activity_association_list_adapter, null);
 
         Association currentAssociation = (Association) getItem(position);
         String associationNom = currentAssociation.getNomAsso();

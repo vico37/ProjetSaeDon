@@ -3,8 +3,11 @@ package iut.dam.projetsaedon.associations;
 import static android.content.ContentValues.TAG;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
 
 import androidx.activity.EdgeToEdge;
@@ -21,6 +24,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import iut.dam.projetsaedon.R;
+import iut.dam.projetsaedon.asso.AssociationDetailsActivity;
 
 public class AssociationListActivity extends AppCompatActivity {
 
@@ -31,11 +35,22 @@ public class AssociationListActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_association_list);
-//        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
-//            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
-//            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
-//            return insets;
-//        });
+        getRemoteAssociation(this);
+
+        ListView assoListView = findViewById(R.id.association_list_view);
+
+        assoListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Intent intent = new Intent(AssociationListActivity.this, AssociationDetailsActivity.class);
+                Bundle bundle = new Bundle();
+
+                bundle.putString("associationId", ""+associationsList.get(position).getId());
+
+                intent.putExtras(bundle);
+                startActivity(intent);
+            }
+        });
     }
 
     public void getRemoteAssociation(Context context) {
