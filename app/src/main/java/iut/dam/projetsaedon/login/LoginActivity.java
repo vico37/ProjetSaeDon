@@ -153,7 +153,7 @@ public class LoginActivity extends AppCompatActivity {
                             finish();
                         } else {
                             // Redirection utilisateur basique
-                            Intent intent = new Intent(LoginActivity.this, MyRecurringDonationsActivity.class);
+                            Intent intent = new Intent(LoginActivity.this, AccueilActivity.class);
                             startActivity(intent);
                             finish();
                         }

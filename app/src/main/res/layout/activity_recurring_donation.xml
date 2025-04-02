@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/scrollViewRecurringDonation"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    tools:context=".donation.RecurringDonationActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <!-- Barre de titre -->
+        <TextView
+            android:id="@+id/textViewRecurringDonationTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Faire un don récurrent"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            android:gravity="center"
+            android:background="@color/violetPrimary"
+            android:textColor="@color/white"
+            android:padding="16dp" />
+
+        <!-- Affichage du nom de l'association -->
+        <TextView
+            android:id="@+id/textViewAssociationName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Donation pour :"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:gravity="center"
+            android:textColor="@color/black"
+            android:padding="16dp" />
+
+        <!-- Champ de saisie du montant -->
+        <EditText
+            android:id="@+id/editTextMontantRecurring"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Montant en €"
+            android:inputType="numberDecimal"
+            android:textSize="18sp"
+            android:padding="12dp"
+            android:layout_marginBottom="16dp"
+            android:background="@android:drawable/edit_text" />
+
+        <!-- Sélection de la fréquence -->
+        <TextView
+            android:id="@+id/textViewFrequencyLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Fréquence :"
+            android:textSize="18sp"
+            android:textColor="@color/black"
+            android:paddingBottom="8dp" />
+
+        <RadioGroup
+            android:id="@+id/radioGroupFrequency"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <RadioButton
+                android:id="@+id/radioMensuel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Mensuel"
+                android:checked="true" />
+
+            <RadioButton
+                android:id="@+id/radioAnnuel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Annuel"
+                android:layout_marginStart="24dp" />
+        </RadioGroup>
+
+        <!-- Boutons d'action -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:paddingTop="24dp">
+
+            <Button
+                android:id="@+id/buttonValiderRecurring"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Valider"
+                android:backgroundTint="@color/violetPrimary"
+                android:textColor="@color/white"
+                android:padding="12dp"
+                android:layout_marginEnd="8dp" />
+
+            <Button
+                android:id="@+id/buttonAnnulerRecurring"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Annuler"
+                android:backgroundTint="@color/violetAccent"
+                android:textColor="@color/white"
+                android:padding="12dp" />
+        </LinearLayout>
+    </LinearLayout>
+</ScrollView>

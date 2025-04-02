@@ -1,5 +1,6 @@
 package iut.dam.projetsaedon.asso;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -17,17 +18,16 @@ import java.net.URL;
 import java.net.URLEncoder;
 import iut.dam.projetsaedon.R;
 import iut.dam.projetsaedon.donation.DonationNormalActivity;
+import iut.dam.projetsaedon.donation.RecurringDonationActivity;
 
 public class AssociationDetailsActivity extends AppCompatActivity {
 
     private TextView textViewNomAsso, textViewDescriptif, textViewMail, textViewTel, textViewAdresse;
     private Button buttonDonSimple, buttonDonRecurrent;
-
-    // URL du script PHP pour récupérer les détails de l'association
     private static final String ASSO_DETAILS_URL = "http://donation.out-online.net/donation_app_bdd/get_asso_details.php";
 
     // Ces variables stockeront les infos récupérées
-    private String associationId;      // l'id numérique récupéré de la BDD (champ idAsso)
+    private String associationId;      // L'id numérique récupéré (champ idAsso)
     private String associationName = "Inconnue";
 
     @Override
@@ -43,19 +43,16 @@ public class AssociationDetailsActivity extends AppCompatActivity {
         buttonDonSimple = findViewById(R.id.buttonDonSimple);
         buttonDonRecurrent = findViewById(R.id.buttonDonRecurrent);
 
-        // Récupérer l'identifiant de l'association :
-        // 1. Vérifier s'il y a un deep link (URI)
+        // Récupérer l'identifiant de l'association depuis l'URI (deep link) ou via un extra
         Uri data = getIntent().getData();
         String inputId = null;
         if (data != null) {
-            // On vérifie d'abord le paramètre "qr_code" (qui est le code QR stocké dans la BDD)
             if (data.getQueryParameter("qr_code") != null) {
                 inputId = data.getQueryParameter("qr_code");
             } else if (data.getQueryParameter("id") != null) {
                 inputId = data.getQueryParameter("id");
             }
         }
-        // 2. Si non présent, récupérer l'extra "associationId"
         if (inputId == null || inputId.isEmpty()) {
             inputId = getIntent().getStringExtra("associationId");
         }
@@ -65,12 +62,11 @@ public class AssociationDetailsActivity extends AppCompatActivity {
             return;
         }
 
-        // Appeler le serveur pour charger les détails.
+        // Charger les détails de l'association depuis le serveur
         loadAssociationDetails(inputId);
 
-        // Bouton "Don simple" : il lancera DonationNormalActivity avec les infos de l'association et l'userId
+        // Bouton "Don simple" : lance DonationNormalActivity avec associationId, associationName et userId
         buttonDonSimple.setOnClickListener(v -> {
-            // On utilise les variables associationId et associationName, qui doivent avoir été mises à jour par loadAssociationDetails
             if (associationId == null || associationId.isEmpty()) {
                 Toast.makeText(AssociationDetailsActivity.this, "Les détails de l'association ne sont pas encore chargés", Toast.LENGTH_SHORT).show();
                 return;
@@ -78,22 +74,49 @@ public class AssociationDetailsActivity extends AppCompatActivity {
             Intent intent = new Intent(AssociationDetailsActivity.this, DonationNormalActivity.class);
             intent.putExtra("associationId", associationId);
             intent.putExtra("associationName", associationName);
-            // Récupérer l'userId depuis SharedPreferences (si l'utilisateur est connecté)
             SharedPreferences prefs = getSharedPreferences("MyPrefs", MODE_PRIVATE);
             String userId = prefs.getString("userId", "");
             intent.putExtra("userId", userId);
             startActivity(intent);
         });
 
-        buttonDonRecurrent.setOnClickListener(v ->
-                Toast.makeText(AssociationDetailsActivity.this, "Don récurrent (à implémenter)", Toast.LENGTH_SHORT).show()
-        );
+        // Bouton "Don récurrent" : vérifier si l'utilisateur est connecté
+        buttonDonRecurrent.setOnClickListener(v -> {
+            SharedPreferences prefs = getSharedPreferences("MyPrefs", MODE_PRIVATE);
+            String userId = prefs.getString("userId", "");
+            if (userId.isEmpty()) {
+                // L'utilisateur n'est pas connecté, on lui propose de se connecter
+                new AlertDialog.Builder(AssociationDetailsActivity.this)
+                        .setTitle("Connexion requise")
+                        .setMessage("Pour effectuer un don récurrent, vous devez être connecté. Voulez-vous vous connecter ?")
+                        .setPositiveButton("Oui", (dialog, which) -> {
+                            Intent intent = new Intent(AssociationDetailsActivity.this, iut.dam.projetsaedon.login.LoginActivity.class);
+                            intent.putExtra("redirectTo", "RecurringDonation");
+                            intent.putExtra("associationId", associationId);
+                            intent.putExtra("associationName", associationName);
+                            startActivity(intent);
+                            finish();
+                        })
+                        .setNegativeButton("Non", (dialog, which) -> {
+                            dialog.dismiss();
+                            Toast.makeText(AssociationDetailsActivity.this, "Vous restez sur la page", Toast.LENGTH_SHORT).show();
+                        })
+                        .show();
+            } else {
+                // L'utilisateur est connecté, lancer RecurringDonationActivity
+                Intent intent = new Intent(AssociationDetailsActivity.this, RecurringDonationActivity.class);
+                intent.putExtra("associationId", associationId);
+                intent.putExtra("associationName", associationName);
+                intent.putExtra("userId", userId);
+                startActivity(intent);
+            }
+        });
     }
 
     private void loadAssociationDetails(String inputId) {
         new Thread(() -> {
             try {
-                // Déterminer si inputId est numérique ou s'il s'agit d'un code QR
+                // Déterminer quel paramètre utiliser pour la requête (associationId ou qr_code)
                 String paramKey;
                 try {
                     Integer.parseInt(inputId);
@@ -119,16 +142,15 @@ public class AssociationDetailsActivity extends AppCompatActivity {
                 conn.disconnect();
 
                 JSONObject json = new JSONObject(sb.toString());
-                // Ici, on récupère l'id numérique de l'association (champ idAsso)
                 final String idAsso = json.optString("idAsso", "");
                 if (idAsso == null || idAsso.isEmpty()) {
                     runOnUiThread(() -> Toast.makeText(AssociationDetailsActivity.this, "Association non trouvée", Toast.LENGTH_LONG).show());
                     return;
                 }
-                // Mettre à jour associationId avec l'id numérique
+                // Mise à jour avec l'id numérique de l'association
                 associationId = idAsso;
                 final String nomAsso = json.optString("nomAsso", "Inconnu");
-                associationName = nomAsso; // stocker pour transmettre à DonationNormalActivity
+                associationName = nomAsso;
                 final String descriptif = json.optString("descriptif", "Aucun descriptif");
                 final String mailAsso = json.optString("mailAsso", "Non défini");
                 final String telAsso = json.optString("telAsso", "Non défini");

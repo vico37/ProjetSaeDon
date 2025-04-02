@@ -21,6 +21,7 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLEncoder;
 import iut.dam.projetsaedon.R;
+import iut.dam.projetsaedon.accueil.AccueilActivity;
 import iut.dam.projetsaedon.asso.AssociationDetailsActivity;
 
 public class DonationNormalActivity extends AppCompatActivity {
@@ -109,16 +110,15 @@ public class DonationNormalActivity extends AppCompatActivity {
                         // Afficher la boîte de dialogue de confirmation
                         new AlertDialog.Builder(DonationNormalActivity.this)
                                 .setTitle("Confirmation")
-                                .setMessage("Votre don a bien été effectué.\nVoulez-vous retourner à la page de l'association ?")
+                                .setMessage("Votre don a bien été effectué.\nVous allez être redirigé à l'accueil")
                                 .setPositiveButton("Confirmer", (dialog, which) -> {
                                     // Retour à la page AssociationDetailsActivity
-                                    Intent intent = new Intent(DonationNormalActivity.this, AssociationDetailsActivity.class);
+                                    Intent intent = new Intent(DonationNormalActivity.this, AccueilActivity.class);
                                     intent.putExtra("associationId", associationId);
                                     intent.putExtra("associationName", associationName);
                                     startActivity(intent);
                                     finish();
                                 })
-                                .setNegativeButton("Rester", null)
                                 .show();
                     } else {
                         Toast.makeText(DonationNormalActivity.this, "Erreur lors du don: " + message, Toast.LENGTH_LONG).show();

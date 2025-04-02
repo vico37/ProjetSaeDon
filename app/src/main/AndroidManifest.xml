@@ -13,6 +13,8 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.ProjetSaeDon"
         tools:targetApi="31">
+        <activity android:name="iut.dam.projetsaedon.donation.RecurringDonationActivity"
+            android:exported="true" />
         <activity android:name="iut.dam.projetsaedon.donation.DonationNormalActivity"
             android:exported="true" />
         <activity
