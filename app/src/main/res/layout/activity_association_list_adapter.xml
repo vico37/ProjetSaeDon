@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="10dp"
+    app:cardCornerRadius="10dp"
+    app:cardElevation="4dp">
+
+  <RelativeLayout
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:padding="15dp">
+
+    <TextView
+        android:id="@+id/association_nom"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="20sp"
+        android:text="@string/association_nom"/>
+
+<!--    <TextView-->
+<!--        android:id="@+id/resident_floor"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_margin="10dp"-->
+<!--        android:textAllCaps="true"-->
+<!--        android:textSize="15sp"-->
+<!--        android:text="@string/resident_default_floor"-->
+<!--        android:layout_alignParentEnd="true"/>-->
+
+    <TextView
+        android:id="@+id/association_desc"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="15sp"
+        android:text="@string/desc_asso_default_text"
+        android:layout_below="@id/association_nom"/>
+  </RelativeLayout>
+
+</androidx.cardview.widget.CardView>
