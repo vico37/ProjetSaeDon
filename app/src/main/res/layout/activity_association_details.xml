@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/scrollViewAssociation"
     android:layout_width="match_parent"
@@ -11,80 +12,62 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        >
+        android:orientation="vertical">
 
-        <!-- Barre de titre -->
+        <!-- Image en haut (bannière ou logo de l'association) -->
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="200sp"
+            android:src="@drawable/association_default_icon"
+            android:background="@color/light_gray"
+            />
+
+        <!-- Titre de l'association -->
         <TextView
-            android:id="@+id/textViewTitle"
+            android:id="@+id/title_nom_asso"
+            android:layout_marginTop="20dp"
+            android:layout_marginStart="10dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Présentation de l'association"
-            android:textSize="24sp"
-            android:textStyle="bold"
-            android:gravity="center"
-            android:background="@color/violetPrimary"
-            android:textColor="@color/white"
-            android:padding="20dp" />
-
-        <!-- Nom de l'association -->
-        <TextView
-            android:id="@+id/textViewNomAsso"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Nom : "
+            android:text="NOM DE L'ASSOCIATION"
             android:textSize="20sp"
-            android:textStyle="bold"
-            android:paddingTop="16dp"
-            android:textColor="@color/black" />
+            android:textAllCaps="true"
+            android:textStyle="bold" />
 
-        <!-- Descriptif -->
+        <!-- Informations de contact -->
         <TextView
-            android:id="@+id/textViewDescriptif"
+            android:id="@+id/subtitle_contact_asso"
+            android:layout_marginStart="10dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Descriptif : "
-            android:textSize="16sp"
-            android:paddingTop="8dp"
-            android:textColor="@color/black" />
+            android:text="Contact: (mail, téléphone, adresse)"
+            android:textSize="12sp" />
 
-        <!-- Mail -->
-        <TextView
-            android:id="@+id/textViewMail"
+        <!-- CardView pour le descriptif -->
+        <androidx.cardview.widget.CardView
+            android:layout_marginTop="20dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Mail : "
-            android:textSize="16sp"
-            android:paddingTop="8dp"
-            android:textColor="@color/black" />
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            app:cardCornerRadius="10dp"
+            android:padding="10dp">
+            <TextView
+                android:id="@+id/desc_asso"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Descriptif de l'association..."
+                android:padding="10dp" />
+        </androidx.cardview.widget.CardView>
 
-        <!-- Téléphone -->
-        <TextView
-            android:id="@+id/textViewTel"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Téléphone : "
-            android:textSize="16sp"
-            android:paddingTop="8dp"
-            android:textColor="@color/black" />
-
-        <!-- Adresse -->
-        <TextView
-            android:id="@+id/textViewAdresse"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Adresse : "
-            android:textSize="16sp"
-            android:paddingTop="8dp"
-            android:textColor="@color/black" />
-
-        <!-- Boutons d'action -->
+        <!-- Boutons d'action pour choisir le type de don -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
             android:orientation="horizontal"
             android:gravity="center"
-            android:paddingTop="24dp">
+            android:padding="10dp">
 
             <Button
                 android:id="@+id/buttonDonSimple"
@@ -93,8 +76,10 @@
                 android:text="Don simple"
                 android:backgroundTint="@color/violetPrimary"
                 android:textColor="@color/white"
+                android:textSize="20sp"
+                android:textAllCaps="true"
                 android:padding="12dp"
-                android:layout_marginEnd="8dp" />
+                android:layout_marginEnd="10dp" />
 
             <Button
                 android:id="@+id/buttonDonRecurrent"
@@ -103,6 +88,8 @@
                 android:text="Don récurrent"
                 android:backgroundTint="@color/violetAccent"
                 android:textColor="@color/white"
+                android:textSize="20sp"
+                android:textAllCaps="true"
                 android:padding="12dp" />
         </LinearLayout>
     </LinearLayout>

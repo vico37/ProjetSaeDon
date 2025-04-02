@@ -19,6 +19,7 @@ import java.net.URLEncoder;
 import iut.dam.projetsaedon.R;
 import iut.dam.projetsaedon.donation.DonationNormalActivity;
 import iut.dam.projetsaedon.donation.RecurringDonationActivity;
+import iut.dam.projetsaedon.login.LoginActivity;
 
 public class AssociationDetailsActivity extends AppCompatActivity {
 
@@ -26,7 +27,7 @@ public class AssociationDetailsActivity extends AppCompatActivity {
     private Button buttonDonSimple, buttonDonRecurrent;
     private static final String ASSO_DETAILS_URL = "http://donation.out-online.net/donation_app_bdd/get_asso_details.php";
 
-    // Ces variables stockeront les infos récupérées
+    // Variables pour stocker les infos récupérées
     private String associationId;      // L'id numérique récupéré (champ idAsso)
     private String associationName = "Inconnue";
 
@@ -35,15 +36,17 @@ public class AssociationDetailsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_association_details);
 
-        textViewNomAsso = findViewById(R.id.textViewNomAsso);
-        textViewDescriptif = findViewById(R.id.textViewDescriptif);
-        textViewMail = findViewById(R.id.textViewMail);
-        textViewTel = findViewById(R.id.textViewTel);
-        textViewAdresse = findViewById(R.id.textViewAdresse);
+        textViewNomAsso = findViewById(R.id.title_nom_asso);
+        // Pour simplifier, nous utiliserons le CardView contenant le descriptif comme description
+        // Vous pouvez adapter selon vos besoins
+        TextView descAsso = findViewById(R.id.desc_asso);
+        textViewMail = findViewById(R.id.subtitle_contact_asso); // Exemple, vous pouvez utiliser d'autres vues pour le contact
+        // Vous pouvez ajouter d'autres TextView pour téléphone, adresse si besoin.
+
         buttonDonSimple = findViewById(R.id.buttonDonSimple);
         buttonDonRecurrent = findViewById(R.id.buttonDonRecurrent);
 
-        // Récupérer l'identifiant de l'association depuis l'URI (deep link) ou via un extra
+        // Récupérer l'identifiant de l'association depuis l'URI (deep link) ou l'extra
         Uri data = getIntent().getData();
         String inputId = null;
         if (data != null) {
@@ -65,7 +68,7 @@ public class AssociationDetailsActivity extends AppCompatActivity {
         // Charger les détails de l'association depuis le serveur
         loadAssociationDetails(inputId);
 
-        // Bouton "Don simple" : lance DonationNormalActivity avec associationId, associationName et userId
+        // Bouton "Don simple" : lancer DonationNormalActivity
         buttonDonSimple.setOnClickListener(v -> {
             if (associationId == null || associationId.isEmpty()) {
                 Toast.makeText(AssociationDetailsActivity.this, "Les détails de l'association ne sont pas encore chargés", Toast.LENGTH_SHORT).show();
@@ -85,12 +88,12 @@ public class AssociationDetailsActivity extends AppCompatActivity {
             SharedPreferences prefs = getSharedPreferences("MyPrefs", MODE_PRIVATE);
             String userId = prefs.getString("userId", "");
             if (userId.isEmpty()) {
-                // L'utilisateur n'est pas connecté, on lui propose de se connecter
+                // L'utilisateur n'est pas connecté, proposer de se connecter
                 new AlertDialog.Builder(AssociationDetailsActivity.this)
                         .setTitle("Connexion requise")
                         .setMessage("Pour effectuer un don récurrent, vous devez être connecté. Voulez-vous vous connecter ?")
                         .setPositiveButton("Oui", (dialog, which) -> {
-                            Intent intent = new Intent(AssociationDetailsActivity.this, iut.dam.projetsaedon.login.LoginActivity.class);
+                            Intent intent = new Intent(AssociationDetailsActivity.this, LoginActivity.class);
                             intent.putExtra("redirectTo", "RecurringDonation");
                             intent.putExtra("associationId", associationId);
                             intent.putExtra("associationName", associationName);
@@ -116,7 +119,6 @@ public class AssociationDetailsActivity extends AppCompatActivity {
     private void loadAssociationDetails(String inputId) {
         new Thread(() -> {
             try {
-                // Déterminer quel paramètre utiliser pour la requête (associationId ou qr_code)
                 String paramKey;
                 try {
                     Integer.parseInt(inputId);
@@ -147,7 +149,7 @@ public class AssociationDetailsActivity extends AppCompatActivity {
                     runOnUiThread(() -> Toast.makeText(AssociationDetailsActivity.this, "Association non trouvée", Toast.LENGTH_LONG).show());
                     return;
                 }
-                // Mise à jour avec l'id numérique de l'association
+                // Mettre à jour associationId avec l'id numérique
                 associationId = idAsso;
                 final String nomAsso = json.optString("nomAsso", "Inconnu");
                 associationName = nomAsso;
@@ -157,11 +159,11 @@ public class AssociationDetailsActivity extends AppCompatActivity {
                 final String adresseAsso = json.optString("adresseAsso", "Non défini");
 
                 runOnUiThread(() -> {
-                    textViewNomAsso.setText("Nom : " + nomAsso);
-                    textViewDescriptif.setText("Descriptif : " + descriptif);
-                    textViewMail.setText("Mail : " + mailAsso);
-                    textViewTel.setText("Téléphone : " + telAsso);
-                    textViewAdresse.setText("Adresse : " + adresseAsso);
+                    textViewNomAsso.setText(nomAsso);
+                    // Pour simplifier, on affiche le descriptif dans le CardView
+                    ((TextView)findViewById(R.id.desc_asso)).setText(descriptif);
+                    // Utiliser le subtitle pour le contact
+                    textViewMail.setText("Mail : " + mailAsso + " | Tel : " + telAsso + " | Adresse : " + adresseAsso);
                 });
             } catch (Exception e) {
                 e.printStackTrace();
