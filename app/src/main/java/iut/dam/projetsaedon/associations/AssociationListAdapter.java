@@ -45,6 +45,11 @@ public class AssociationListAdapter extends BaseAdapter {
         return 0;
     }
 
+    public void setFilteredList(List<Association> filteredList) {
+        this.associationsList = filteredList;
+        notifyDataSetChanged();
+    }
+
     @SuppressLint("ViewHolder")
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {

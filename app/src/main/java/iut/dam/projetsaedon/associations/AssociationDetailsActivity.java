@@ -1,4 +1,4 @@
-package iut.dam.projetsaedon.asso;
+package iut.dam.projetsaedon.associations;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
@@ -115,6 +115,8 @@ public class AssociationDetailsActivity extends AppCompatActivity {
             }
         });
     }
+
+
 
     private void loadAssociationDetails(String inputId) {
         new Thread(() -> {
