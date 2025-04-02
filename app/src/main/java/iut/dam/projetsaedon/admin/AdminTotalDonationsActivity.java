@@ -155,6 +155,7 @@ public class AdminTotalDonationsActivity extends AppCompatActivity {
                     });
                 } catch (Exception e) {
                     e.printStackTrace();
+
                     runOnUiThread(new Runnable() {
                         @Override
                         public void run() {

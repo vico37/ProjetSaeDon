@@ -6,7 +6,7 @@
     android:id="@+id/scrollViewAssociation"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white"
+    android:background="@color/BleuFond"
     tools:context=".associations.AssociationDetailsActivity">
 
     <LinearLayout
@@ -17,10 +17,9 @@
         <!-- Image en haut (bannière ou logo de l'association) -->
         <ImageView
             android:layout_width="match_parent"
-            android:layout_height="200sp"
+            android:layout_height="200dp"
             android:src="@drawable/association_default_icon"
-            android:background="@color/light_gray"
-            />
+            android:background="@color/dark_blue" />
 
         <!-- Titre de l'association -->
         <TextView
@@ -38,10 +37,15 @@
         <TextView
             android:id="@+id/subtitle_contact_asso"
             android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Contact: (mail, téléphone, adresse)"
-            android:textSize="12sp" />
+            android:text="Contact:\n(mail, téléphone, adresse)"
+            android:textSize="15sp"
+            android:inputType="textMultiLine"
+            android:ellipsize="none"
+            android:minLines="2" />
+
 
         <!-- CardView pour le descriptif -->
         <androidx.cardview.widget.CardView
@@ -74,7 +78,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Don simple"
-                android:backgroundTint="@color/violetPrimary"
+                android:backgroundTint="@color/violetAccent"
                 android:textColor="@color/white"
                 android:textSize="20sp"
                 android:textAllCaps="true"

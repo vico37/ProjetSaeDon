@@ -5,14 +5,14 @@
     android:id="@+id/donationNormalScroll"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white"
+    android:background="@color/BleuFond"
     tools:context=".donation.DonationNormalActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:padding="16dp">
+        >
 
         <!-- Barre de titre -->
         <TextView
@@ -23,9 +23,9 @@
             android:textSize="24sp"
             android:textStyle="bold"
             android:gravity="center"
-            android:background="@color/violetPrimary"
+            android:background="@color/dark_blue"
             android:textColor="@color/white"
-            android:padding="16dp" />
+            android:padding="20dp" />
 
         <!-- Affichage du nom de l'association -->
         <TextView
@@ -64,7 +64,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Faire un don"
-                android:backgroundTint="@color/violetPrimary"
+                android:backgroundTint="@color/violetAccent"
                 android:textColor="@color/white"
                 android:padding="12dp"
                 android:layout_marginEnd="8dp" />

@@ -80,6 +80,13 @@ public class LoginActivity extends AppCompatActivity {
         buttonConnexionInvite.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                // Effacer toutes les données stockées dans SharedPreferences
+                SharedPreferences prefs = getSharedPreferences("MyPrefs", MODE_PRIVATE);
+                SharedPreferences.Editor editor = prefs.edit();
+                editor.clear();
+                editor.apply();
+
+                // Lancer l'activité d'accueil
                 startActivity(new Intent(LoginActivity.this, AccueilActivity.class));
             }
         });
