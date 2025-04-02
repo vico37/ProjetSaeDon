@@ -15,6 +15,7 @@ import android.widget.Toast;
 import iut.dam.projetsaedon.R;
 import iut.dam.projetsaedon.accueil.AccueilActivity;
 import iut.dam.projetsaedon.admin.AdminTotalDonationsActivity;
+import iut.dam.projetsaedon.mesdonsrecurents.MyRecurringDonationsActivity;
 import iut.dam.projetsaedon.register.RegisterActivity;
 
 import org.json.JSONObject;
@@ -152,7 +153,7 @@ public class LoginActivity extends AppCompatActivity {
                             finish();
                         } else {
                             // Redirection utilisateur basique
-                            Intent intent = new Intent(LoginActivity.this, AccueilActivity.class);
+                            Intent intent = new Intent(LoginActivity.this, MyRecurringDonationsActivity.class);
                             startActivity(intent);
                             finish();
                         }
