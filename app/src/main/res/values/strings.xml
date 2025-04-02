@@ -33,4 +33,5 @@
     <string name="myAccount">Mon Compte</string>
     <string name="edit_info">Modifier vos informations</string>
     <string name="logout">Se déconnecter</string>
+    <string name="menu">Menu</string>
 </resources>
