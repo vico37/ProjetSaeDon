@@ -9,7 +9,6 @@
         android:id="@+id/logo_menu"
         android:layout_width="70sp"
         android:layout_height="70sp"
-        android:scaleType="centerCrop"
         android:src="@drawable/logo"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"

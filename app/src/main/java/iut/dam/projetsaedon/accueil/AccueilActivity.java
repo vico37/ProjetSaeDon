@@ -2,14 +2,18 @@ package iut.dam.projetsaedon.accueil;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
+import androidx.core.view.GravityCompat;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
 
 import iut.dam.projetsaedon.R;
 import iut.dam.projetsaedon.associations.AssociationListActivity;
@@ -27,6 +31,8 @@ public class AccueilActivity extends AppCompatActivity {
 //            return insets;
 //        });
 
+        final DrawerLayout drawerLayout = findViewById(R.id.drawer_layout);
+
         findViewById(R.id.btn_rech_asso).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -40,5 +46,14 @@ public class AccueilActivity extends AppCompatActivity {
                 startActivity(new Intent(AccueilActivity.this, AccueilActivity.class));
             }
         });
+
+        findViewById(R.id.image_menu).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                drawerLayout.openDrawer(GravityCompat.START);
+            }
+        });
+
+
     }
 }
